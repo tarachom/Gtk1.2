@@ -38,6 +38,10 @@ namespace GtkTest
             bAdd.Clicked += OnAdd;
             hBoxButton.PackStart(bAdd, false, false, 10);
 
+            Button bSave = new Button("Вигрузити файл");
+            bSave.Clicked += OnSave;
+            hBoxButton.PackStart(bSave, false, false, 10);
+
             Button bDelete = new Button("Видалити файл");
             bDelete.Clicked += OnDelete;
             hBoxButton.PackStart(bDelete, false, false, 10);
@@ -164,6 +168,58 @@ namespace GtkTest
                 }
 
                 OnFill(this, new EventArgs());
+            }
+        }
+
+        void OnSave(object? sender, EventArgs args)
+        {
+            if (DataSource != null)
+            {
+                if (treeView!.Selection.CountSelectedRows() != 0)
+                {
+                    string currentFolder = "";
+                    bool isSelect = false;
+
+                    FileChooserDialog fc = new FileChooserDialog("Виберіть каталог для вигрузки файлу", this,
+                        FileChooserAction.SelectFolder, "Закрити", ResponseType.Cancel, "Вибрати", ResponseType.Accept);
+
+                    if (fc.Run() == (int)ResponseType.Accept)
+                    {
+                        if (!String.IsNullOrEmpty(fc.CurrentFolder))
+                        {
+                            currentFolder = fc.CurrentFolder;
+                            isSelect = true;
+                        }
+                    }
+
+                    fc.Destroy();
+
+                    if (isSelect)
+                    {
+                        TreePath[] selectionRows = treeView.Selection.GetSelectedRows();
+
+                        foreach (TreePath itemPath in selectionRows)
+                        {
+                            TreeIter iter;
+                            treeView.Model.GetIter(out iter, itemPath);
+
+                            int id = (int)treeView.Model.GetValue(iter, (int)Columns.id);
+                            string filename = (string)treeView.Model.GetValue(iter, (int)Columns.name);
+
+                            string fullPath = System.IO.Path.Combine(currentFolder, filename);
+
+                            NpgsqlCommand command = DataSource.CreateCommand(
+                                "SELECT data FROM tab2 WHERE id = @id");
+
+                            command.Parameters.AddWithValue("id", id);
+
+                            object? data = command.ExecuteScalar();
+
+                            if (data != null)
+                                File.WriteAllBytes(fullPath, (byte[])data);
+                        }
+                    }
+                }
             }
         }
 

@@ -10,3 +10,16 @@ dotnet add package Npgsql --version 7.0.0
 
 GtkSharp
 dotnet add package GtkSharp --version 3.24.24.38
+
+
+
+--------------------------------------
+
+CREATE TABLE IF NOT EXISTS public.tab2
+(
+    id serial NOT NULL,
+    name text,
+    data bytea,
+    size integer,
+    CONSTRAINT tab2_pkey PRIMARY KEY (id)
+)
