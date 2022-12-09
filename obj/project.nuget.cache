@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "dgSpecHash": "5q/xQ2Jnl2X3FIVHsC9g+ZjiZYBNfDVj5y1j/DEeoYU58e/Xnekl6xBA1CYZO//PYVyW7QihiRBWac4UOog84w==",
+  "success": true,
+  "projectFilePath": "/home/tarachom/Youtube/Gtk1.2/Gtk1.2.csproj",
+  "expectedPackageFiles": [
+    "/home/tarachom/.nuget/packages/atksharp/3.24.24.38/atksharp.3.24.24.38.nupkg.sha512",
+    "/home/tarachom/.nuget/packages/cairosharp/3.24.24.38/cairosharp.3.24.24.38.nupkg.sha512",
+    "/home/tarachom/.nuget/packages/gdksharp/3.24.24.38/gdksharp.3.24.24.38.nupkg.sha512",
+    "/home/tarachom/.nuget/packages/giosharp/3.24.24.38/giosharp.3.24.24.38.nupkg.sha512",
+    "/home/tarachom/.nuget/packages/glibsharp/3.24.24.38/glibsharp.3.24.24.38.nupkg.sha512",
+    "/home/tarachom/.nuget/packages/gtksharp/3.24.24.38/gtksharp.3.24.24.38.nupkg.sha512",
+    "/home/tarachom/.nuget/packages/microsoft.extensions.logging.abstractions/6.0.0/microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512",
+    "/home/tarachom/.nuget/packages/npgsql/7.0.0/npgsql.7.0.0.nupkg.sha512",
+    "/home/tarachom/.nuget/packages/pangosharp/3.24.24.38/pangosharp.3.24.24.38.nupkg.sha512",
+    "/home/tarachom/.nuget/packages/system.runtime.compilerservices.unsafe/6.0.0/system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
