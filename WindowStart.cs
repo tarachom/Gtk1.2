@@ -109,7 +109,7 @@ namespace GtkTest
                 Store!.Clear();
 
                 NpgsqlCommand command = DataSource.CreateCommand(
-                    "SELECT id, name FROM tab2 ORDER BY id");
+                    "SELECT id, name, size FROM tab2 ORDER BY id");
 
                 NpgsqlDataReader reader = command.ExecuteReader();
 
@@ -117,8 +117,9 @@ namespace GtkTest
                 {
                     int id = (int)reader["id"];
                     string name = reader["name"].ToString() ?? "";
+                    int size = (int)reader["size"];
 
-                    Store!.AppendValues(new Gdk.Pixbuf("doc.png"), id, name);
+                    Store!.AppendValues(new Gdk.Pixbuf("doc.png"), id, name, size);
                 }
             }
         }
@@ -153,9 +154,10 @@ namespace GtkTest
                     byte[] data = File.ReadAllBytes(filename);
 
                     NpgsqlCommand command = DataSource.CreateCommand(
-                    "INSERT INTO tab1 (name, data) VALUES (@name, @data)");
+                    "INSERT INTO tab2 (name, size, data) VALUES (@name, @size, @data)");
 
                     command.Parameters.AddWithValue("name", fileinfo.Name);
+                    command.Parameters.AddWithValue("size", fileinfo.Length); //byte
                     command.Parameters.AddWithValue("data", data);
 
                     command.ExecuteNonQuery();
@@ -172,7 +174,7 @@ namespace GtkTest
                 if (treeView!.Selection.CountSelectedRows() != 0)
                 {
                     NpgsqlCommand command = DataSource.CreateCommand(
-                        "DELETE FROM tab1 WHERE id = @id");
+                        "DELETE FROM tab2 WHERE id = @id");
 
                     TreePath[] selectionRows = treeView.Selection.GetSelectedRows();
 
