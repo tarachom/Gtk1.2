@@ -1,0 +1,12 @@
+
+
+
+
+Новий проект
+dotnet new console
+
+Драйвер Npgsql
+dotnet add package Npgsql --version 7.0.0
+
+GtkSharp
+dotnet add package GtkSharp --version 3.24.24.38
