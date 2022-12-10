@@ -125,6 +125,8 @@ namespace GtkTest
 
                     Store!.AppendValues(new Gdk.Pixbuf("doc.png"), id, name, size);
                 }
+
+                reader.Close();
             }
         }
 
